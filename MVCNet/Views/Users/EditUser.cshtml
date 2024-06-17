@@ -1,0 +1,30 @@
+﻿@model UpdateUserViewModel
+
+@{
+    ViewData["Title"] = "Editar Usuario";
+}
+
+<h1>Editar usuario</h1>
+
+<form asp-action="EditUser">
+    <div class="fom-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ProfileId"></label>
+        <select asp-for="ProfileId" asp-items="@ViewBag.Profiles"  class="form-control" >
+        </select>
+        <span asp-validation-for="ProfileId" class=" text-danger"></span>
+    </div>
+    <button class="btn btn-primary mt-2" type="submit">Actualizar Usuario</button>
+</form>
+
+@section Scripts {
+    @{
+        var profiles = ViewBag.Profiles;
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
